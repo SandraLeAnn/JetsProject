@@ -1,0 +1,2 @@
+CargoCarrier,USS Enterprise,100000,20000,5000000
+Fighter,Bad Jet,100,10,10000
