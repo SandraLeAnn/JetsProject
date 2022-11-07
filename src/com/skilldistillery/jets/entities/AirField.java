@@ -19,22 +19,16 @@ public class AirField {
 	}
 
 	public ArrayList<Jet> populateAirField(String fileName) {
-
 		try (BufferedReader bufIn = new BufferedReader(new FileReader("jets.txt"))) {
 			String line;
-
 			while ((line = bufIn.readLine()) != null) {
-
 				String arr[] = line.split(",");
-				// capture the info, split between commas, and store into variables that match
-				// the objects fields
 				String planeType = arr[0];
 				String shipName = arr[1];
 				String shipModel = arr[2];
 				long shipPrice = Long.parseLong(arr[3]);
 				double shipSpeed = Double.parseDouble(arr[4]);
 				int shipRange = Integer.parseInt(arr[5]);
-				// create a jet( carrier, or fighter, or spaceship)
 				if (planeType.equals("SpaceFleet")) {
 					SpaceFleet sf = new SpaceFleet(shipName, shipModel, shipPrice, shipSpeed, shipRange);
 					airField.add(sf);
@@ -50,7 +44,6 @@ public class AirField {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
-
 		return airField;
 	}
 
@@ -58,27 +51,22 @@ public class AirField {
 		for (Jet jet : airField) {
 			System.out.println(jet);
 		}
-
-		// TODO Auto-generated method stub
-//		System.out.println(Arrays.asList(airField.toString()));
 	}
 
 	public void flyJets() {
-		for(Jet jet : airField) {
+		for (Jet jet : airField) {
 			System.out.println(jet.fly());
 		}
 	}
+
 	public void viewFastestJet() {
-		
-	
+
 		double fastestJet = 0.0;
 		int counter = 0;
 		for (int i = 0; i < airField.size(); i++) {
 			if (airField.get(i).getSpeed() > fastestJet) {
 				fastestJet = airField.get(i).getSpeed();
 				counter = i;
-				
-				
 			}
 		}
 		System.out.println("Fastest Jet " + airField.get(counter));
@@ -94,27 +82,28 @@ public class AirField {
 				counter = i;
 			}
 		}
-				System.out.println("Jet with longest range " + airField.get(counter));
-				System.out.println("\n");
-}
+		System.out.println("Jet with longest range " + airField.get(counter));
+		System.out.println("\n");
+	}
+
 	public void loadAllCargoJets() {
 		// TODO Auto-generated method stub
-		 for (Jet jet : airField) {
-			 if (jet instanceof CargoCarrier) {
-				 ((CargoCarrier) jet).callToInterfaceCC();
-			 }
-		 }			
+		for (Jet jet : airField) {
+			if (jet instanceof CargoCarrier) {
+				((CargoCarrier) jet).callToInterfaceCC();
+			}
+		}
 	}
 
 	public void dogfight() {
 		for (Jet jet : airField) {
-			 if (jet instanceof CombatFighter) {
-				 ((CombatFighter) jet).callToInterfaceCR();
-			 }
+			if (jet instanceof CombatFighter) {
+				((CombatFighter) jet).callToInterfaceCR();
+			}
 		}
 	}
+
 	public void addJet() {
-		
 		System.out.println("Please enter the make.");
 		String make = sc.next();
 		System.out.println("Please enter model.");
@@ -125,37 +114,73 @@ public class AirField {
 		double speed = sc.nextDouble();
 		System.out.println("Please enter flight range");
 		int range = sc.nextInt();
-		
 		CombatFighter combatFighter = new CombatFighter(make, model, price, speed, range);
 		airField.add(combatFighter);
 		System.out.println("Congrats you added a new aircraft!");
 	}
 
 	public void removeJet() {
-		if(airField.size()>0) {
-			
-		
-		int counter = 0;
-		for(Jet jet : airField) {
-			System.out.println((counter+1) + ": " + jet.getName());
-			counter++;
-		}	
-			
-		System.out.println("Please enter the number of the aircraft you wish to remove.");
-		String userNumber = sc.next();
-		System.out.println("");
-		
-		
-		int menuChoice = 0;
-		menuChoice = filterUserNumber(userNumber, menuChoice);
-		
-		airField.remove(counter -1);	
-		System.out.println("Success! You removed an aircraft!");	
-	} 
-		else {
-		System.out.println("Hanger is empty!");
+		if (airField.size() > 0) {
+			int counter = 0;
+			for (Jet jet : airField) {
+				System.out.println((counter + 1) + ": " + jet.getName());
+				counter++;
+			}
+			System.out.println("Please enter the number of the aircraft you wish to remove.");
+			String userNumber = sc.next();
+			System.out.println("");
+			int menuChoice = 0;
+			menuChoice = filterUserNumber(userNumber, menuChoice);
+			airField.remove(counter - 1);
+			System.out.println("Success! You removed an aircraft!");
+		} else {
+			System.out.println("Hanger is empty!");
+		}
 	}
-	} 
+
+	public void mainMenu() {
+		boolean menu = true;
+		while (menu) {
+			displayMenu();
+			System.out.println("\nPlease pick a number from the list.");
+			String userNumber = sc.nextLine();
+			int menuChoice = 0;
+			menuChoice = filterUserNumber(userNumber, menuChoice);
+			switch (menuChoice) {
+			case 1:
+				listFleet();
+				break;
+			case 2:
+				flyJets();
+				break;
+			case 3:
+				viewFastestJet();
+				break;
+			case 4:
+				viewLongestRange();
+				break;
+			case 5:
+				loadAllCargoJets();
+				break;
+			case 6:
+				dogfight();
+				break;
+			case 7:
+				addJet();
+				break;
+			case 8:
+				removeJet();
+				break;
+			case 9:
+				System.out.println("Thanks for playing");
+				menu = false;
+				break;
+			default:
+				System.out.println("That choice is invalid.");
+			}
+		}
+	}
+
 	public void displayMenu() {
 		System.out.println("\n*************MENU**************\n");
 		System.out.println("1. List Fleet");
@@ -167,9 +192,8 @@ public class AirField {
 		System.out.println("7. Add A Jet To Fleet");
 		System.out.println("8. Remove A Jet From Fleet");
 		System.out.println("9. Quit");
-}
-	
-	
+	}
+
 	public int filterUserNumber(String userNumber, int menuChoice) {
 		if (userNumber.equals("1") || userNumber.equalsIgnoreCase("one")) {
 			menuChoice = 1;
@@ -192,6 +216,5 @@ public class AirField {
 		}
 		return menuChoice;
 	}
-	
-	
+
 }
