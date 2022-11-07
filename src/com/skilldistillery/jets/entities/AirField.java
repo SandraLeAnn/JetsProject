@@ -209,7 +209,7 @@ public class AirField {
 			menuChoice = 7;
 		} else if (userNumber.equals("8") || userNumber.equalsIgnoreCase("eight")) {
 			menuChoice = 8;
-		} else if (userNumber.equals("9") || userNumber.equalsIgnoreCase("nine")) {
+		} else if (userNumber.equals("9") || userNumber.equalsIgnoreCase("nine") || userNumber.equalsIgnoreCase("quit"))  {
 			menuChoice = 9;
 		}
 		return menuChoice;
