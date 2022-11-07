@@ -6,16 +6,16 @@ public abstract class Jet {
 	
 	private String name;
 	private String model;
-	private double price;
-	private double speed;
-	private double range;
+	private long price;
+	protected double speed;
+	protected int range;
 
 	
 	public Jet() {
 		super();
 	}
 
-	public Jet(String name, String model, double price, double speed, double range) {
+	public Jet(String name, String model, long price, double speed, int range) {
 		super();
 		this.name = name;
 		this.model = model;
@@ -24,7 +24,12 @@ public abstract class Jet {
 		this.range = range;
 	}
 
-	public abstract void fly();
+	public  String fly() {
+		//Adjust formula to only show 2 decimal points
+		double time = (this.speed/this.range);
+		String str =  toString() + " " + "Hours till fuel runs out: " + time;
+		return str;
+	}
 
 	public String getName() {
 		return name;
@@ -42,11 +47,11 @@ public abstract class Jet {
 		this.model = model;
 	}
 
-	public double getPrice() {
+	public long getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 
@@ -58,19 +63,18 @@ public abstract class Jet {
 		this.speed = speed;
 	}
 
-	public double getRange() {
+	public int getRange() {
 		return range;
 	}
 
-	public void setRange(double range) {
+	public void setRange(int range) {
 		this.range = range;
 	}
 
 	
 	@Override
 	public String toString() {
-		return "Plane name: " + name + ", model: " + model + ", price=" + price + ", speed=" + speed + ", range=" + range
-				+ "]";
+		return "Plane name: " + name + ", model: " + model + ", price: " + price + ", speed: " + speed + ", range: " + range;
 	}
 
 	@Override

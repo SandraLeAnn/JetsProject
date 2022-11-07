@@ -1,2 +1,6 @@
-CargoCarrier,USS Enterprise,100000,20000,5000000
-Fighter,Bad Jet,100,10,10000
+SpaceFleet,Imperial Star Destroyer,Destroyer,25000,300.25,90
+SpaceFleet,Millennium Falcon,Cargoship,242000,554.25,350
+CombatFighter,Raptor,F-22,5000777887,563.23,598
+CombatFighter,Eagle,F-15,800059999,895.09,700
+CargoCarrier,Globemaster,C-17,9008889,223.80,890
+CargoCarrier,Kawasaki,C-1,48777789,180.25,950
