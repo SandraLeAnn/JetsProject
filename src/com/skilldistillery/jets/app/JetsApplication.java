@@ -27,9 +27,11 @@ public class JetsApplication {
 			int menuChoice = 0;
 			
 			
-			{	
-			menuChoice = af.fitlerUserNumber(userNumber, menuChoice);
-			}
+			
+			
+			menuChoice = af.filterUserNumber(userNumber, menuChoice);
+
+		
 			
 			
 			switch (menuChoice) {

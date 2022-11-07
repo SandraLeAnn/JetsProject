@@ -132,22 +132,32 @@ public class AirField {
 	}
 
 	public void removeJet() {
+		if(airField.size()>0) {
+			
 		
-		int counter = 1;
+		int counter = 0;
 		for(Jet jet : airField) {
-			System.out.println(counter + ": " + jet.getName());
+			System.out.println((counter+1) + ": " + jet.getName());
 			counter++;
+		}	
 			
 		System.out.println("Please enter the number of the aircraft you wish to remove.");
-		int num = sc.nextInt();
+		String userNumber = sc.next();
+		System.out.println("");
 		
-		airField.remove(num -1);	
+		
+		int menuChoice = 0;
+		menuChoice = filterUserNumber(userNumber, menuChoice);
+		
+		airField.remove(counter -1);	
 		System.out.println("Success! You removed an aircraft!");	
-			
-		}	
+	} 
+		else {
+		System.out.println("Hanger is empty!");
 	}
+	} 
 	public void displayMenu() {
-		System.out.println("*************MENU**************\n");
+		System.out.println("\n*************MENU**************\n");
 		System.out.println("1. List Fleet");
 		System.out.println("2. Fly All Jets");
 		System.out.println("3. View Fastest Jet");
@@ -160,7 +170,7 @@ public class AirField {
 }
 	
 	
-	public int fitlerUserNumber(String userNumber, int menuChoice) {
+	public int filterUserNumber(String userNumber, int menuChoice) {
 		if (userNumber.equals("1") || userNumber.equalsIgnoreCase("one")) {
 			menuChoice = 1;
 		} else if (userNumber.equals("2") || userNumber.equalsIgnoreCase("two")) {
