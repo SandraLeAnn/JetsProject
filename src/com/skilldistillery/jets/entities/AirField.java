@@ -69,29 +69,33 @@ public class AirField {
 		}
 	}
 	public void viewFastestJet() {
-		// TODO Auto-generated method stub
+		
+	
 		double fastestJet = 0.0;
+		int counter = 0;
 		for (int i = 0; i < airField.size(); i++) {
 			if (airField.get(i).getSpeed() > fastestJet) {
 				fastestJet = airField.get(i).getSpeed();
+				counter = i;
 				
-				System.out.println("Fastest Jet " + airField.get(i).toString());
-				System.out.println("\n");
+				
 			}
 		}
+		System.out.println("Fastest Jet " + airField.get(counter));
+		System.out.println("\n");
 	}
 
 	public void viewLongestRange() {
-
+		int counter = 0;
 		double longestRange = 0.0;
 		for (int i = 0; i < airField.size(); i++) {
 			if (airField.get(i).getSpeed() > longestRange) {
 				longestRange = airField.get(i).getSpeed();
-				
-				System.out.println("Jet with longest range " + airField.get(i).toString());
-				System.out.println("\n");
+				counter = i;
+			}
 		}
-	}
+				System.out.println("Jet with longest range " + airField.get(counter));
+				System.out.println("\n");
 }
 	public void loadAllCargoJets() {
 		// TODO Auto-generated method stub
@@ -129,13 +133,14 @@ public class AirField {
 
 	public void removeJet() {
 		
-		System.out.println("Please enter the number of the aircraft you wish to remove.");
-		int num = sc.nextInt();
-		int counter = 0;
+		int counter = 1;
 		for(Jet jet : airField) {
 			System.out.println(counter + ": " + jet.getName());
 			counter++;
 			
+		System.out.println("Please enter the number of the aircraft you wish to remove.");
+		int num = sc.nextInt();
+		
 		airField.remove(num -1);	
 		System.out.println("Success! You removed an aircraft!");	
 			
@@ -153,4 +158,30 @@ public class AirField {
 		System.out.println("8. Remove A Jet From Fleet");
 		System.out.println("9. Quit");
 }
+	
+	
+	public int fitlerUserNumber(String userNumber, int menuChoice) {
+		if (userNumber.equals("1") || userNumber.equalsIgnoreCase("one")) {
+			menuChoice = 1;
+		} else if (userNumber.equals("2") || userNumber.equalsIgnoreCase("two")) {
+			menuChoice = 2;
+		} else if (userNumber.equals("3") || userNumber.equalsIgnoreCase("three")) {
+			menuChoice = 3;
+		} else if (userNumber.equals("4") || userNumber.equalsIgnoreCase("four")) {
+			menuChoice = 4;
+		} else if (userNumber.equals("5") || userNumber.equalsIgnoreCase("five")) {
+			menuChoice = 5;
+		} else if (userNumber.equals("6") || userNumber.equalsIgnoreCase("six")) {
+			menuChoice = 6;
+		} else if (userNumber.equals("7") || userNumber.equalsIgnoreCase("seven")) {
+			menuChoice = 7;
+		} else if (userNumber.equals("8") || userNumber.equalsIgnoreCase("eight")) {
+			menuChoice = 8;
+		} else if (userNumber.equals("9") || userNumber.equalsIgnoreCase("nine")) {
+			menuChoice = 9;
+		}
+		return menuChoice;
+	}
+	
+	
 }

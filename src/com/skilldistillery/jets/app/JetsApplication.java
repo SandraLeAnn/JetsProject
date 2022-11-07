@@ -13,61 +13,70 @@ public class JetsApplication {
 		JetsApplication ja = new JetsApplication();
 
 		ja.launch();
-}
-		private void launch() {
-	
-boolean menu = true;
-while (menu) {
+	}
 
-	af.displayMenu();
-	
-	
-	System.out.println("\nPlease pick a number from the list.");
-		int userNumber = sc.nextInt();
-	
-		switch (userNumber) {
+	private void launch() {
 
-		case 1:
+		boolean menu = true;
+		while (menu) {
 
-			af.listFleet();
-			break;
+			af.displayMenu();
 
-		case 2:
-			af.flyJets();
-			break;
+			System.out.println("\nPlease pick a number from the list.");
+			String userNumber = sc.nextLine();
+			int menuChoice = 0;
+			
+			
+			{	
+			menuChoice = af.fitlerUserNumber(userNumber, menuChoice);
+			}
+			
+			
+			switch (menuChoice) {
 
-		case 3:
-			af.viewFastestJet();
-			break;
+			case 1:
 
-		case 4:
-			af.viewLongestRange();
-			break;
+				af.listFleet();
+				break;
 
-		case 5:
-			af.loadAllCargoJets();
-			break;
+			case 2:
+				af.flyJets();
+				break;
 
-		case 6:
-			af.dogfight();
-			break;
+			case 3:
+				af.viewFastestJet();
+				break;
 
-		case 7:
-			af.addJet();
-			break;
+			case 4:
+				af.viewLongestRange();
+				break;
 
-		case 8:
-			af.removeJet();
-			break;
+			case 5:
+				af.loadAllCargoJets();
+				break;
 
-		case 9:
-			System.out.println("Thanks for playing");
-			menu = false;
-			break;
+			case 6:
+				af.dogfight();
+				break;
 
-		default:
-			System.out.println("That choice is invalid.");
+			case 7:
+				af.addJet();
+				break;
+
+			case 8:
+				af.removeJet();
+				break;
+
+			case 9:
+				System.out.println("Thanks for playing");
+				menu = false;
+				break;
+
+			default:
+				System.out.println("That choice is invalid.");
+			}
 		}
 	}
-}
+
+	
 }
