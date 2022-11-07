@@ -89,8 +89,8 @@ public class AirField {
 		int counter = 0;
 		double longestRange = 0.0;
 		for (int i = 0; i < airField.size(); i++) {
-			if (airField.get(i).getSpeed() > longestRange) {
-				longestRange = airField.get(i).getSpeed();
+			if (airField.get(i).getRange() > longestRange) {
+				longestRange = airField.get(i).getRange();
 				counter = i;
 			}
 		}
